@@ -15,9 +15,19 @@
 <body class="font-sans antialiased">
     <div class="bg-gray-100">
         <div class="flex justify-center items-center h-sceen w-full">
-            <form action="" class="w-full max-w-2xl" method="post">
+            <form action="{{ route('donations.store') }}" class="w-full max-w-2xl" method="post">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
+                @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative alert alert-danger" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error )
+                                <li>{{ $error }}</li>
+                                @dd($error)
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="space-y-12">
                     <div class="border-b border-gray-900/10 pb-12">
                         <div class="flex justify-between items-center gap-x-6">

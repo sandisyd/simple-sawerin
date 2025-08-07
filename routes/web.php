@@ -8,6 +8,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/donate', [DonationController::class,'store'])->name('donations.store');
+Route::get('/donation/success', function(){
+    return view('donation-success');
+})->name('donations.success');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
